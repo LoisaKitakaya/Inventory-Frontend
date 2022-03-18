@@ -5,14 +5,14 @@
     aria-label="main navigation"
   >
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
+      <router-link to="/" class="navbar-item">
         <h1 class="title has-text-primary">
           <small>#</small>Inventory<span class="has-text-danger">.</span>
         </h1>
-      </a>
+      </router-link>
     </div>
     <div class="navbar-end">
-      <a class="navbar-item"> Store </a>
+      <router-link to="/inventory" class="navbar-item">Inventory</router-link>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link"> More </a>
@@ -25,10 +25,10 @@
       </div>
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
+          <router-link to="/signup" class="button is-primary">
             <strong>Sign up</strong>
-          </a>
-          <a class="button is-info"> Log in </a>
+          </router-link>
+          <router-link to="/login" class="button is-info"> Log in </router-link>
         </div>
       </div>
     </div>
