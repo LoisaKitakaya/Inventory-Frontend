@@ -3,7 +3,7 @@
     <div class="section">
       <h1 class="title has-text-centered">Inventory</h1>
       <div class="table-container">
-        <table class="table is-striped is-hoverable">
+        <table class="card table is-striped is-hoverable">
           <thead>
             <tr class="has-text-centered">
               <th>Name</th>

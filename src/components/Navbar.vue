@@ -24,11 +24,14 @@
         </div>
       </div>
       <div class="navbar-item">
-        <div class="buttons">
+        <div class="buttons" v-if="!$store.state.isAuthenticated">
           <router-link to="/signup" class="button is-primary">
             <strong>Sign up</strong>
           </router-link>
-          <router-link to="/login" class="button is-info"> Log in </router-link>
+          <router-link to="/login" class="button is-info"> Login </router-link>
+        </div>
+        <div class="buttons" v-else>
+          <a class="button is-danger" @click="logout"> Logout </a>
         </div>
       </div>
     </div>
@@ -36,7 +39,38 @@
 </template>
 
 <script>
+import axios from "axios";
+import { toast } from "bulma-toast";
+
 export default {
   name: "Navbar",
+  methods: {
+    logout() {
+      axios
+        .post("/api-v1/token/logout/")
+        .then((response) => {
+          console.log(response.data);
+
+          toast({
+            message: "Logged out.",
+            type: "is-danger",
+            dismissible: true,
+            pauseOnHover: true,
+            duration: 3000,
+            position: "bottom-right",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      axios.defaults.headers.common["Authorization"] = "";
+      sessionStorage.removeItem("token");
+
+      this.$store.commit("removeToken");
+
+      this.$router.push("/");
+    },
+  },
 };
 </script>
