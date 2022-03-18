@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import Signup from "../views/authentication/Signup.vue";
 import Login from "../views/authentication/Login.vue";
 import InventoryView from "../views/InventoryView.vue";
+import ItemDetailView from "../views/ItemDetailView.vue";
 
 const routes = [
   {
@@ -25,6 +26,14 @@ const routes = [
     path: "/inventory",
     name: "inventory",
     component: InventoryView,
+    meta: {
+      requireLogin: true,
+    },
+  },
+  {
+    path: "/inventory/:id",
+    name: "detail",
+    component: ItemDetailView,
     meta: {
       requireLogin: true,
     },

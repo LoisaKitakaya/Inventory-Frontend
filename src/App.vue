@@ -93,4 +93,13 @@ export default {
   width: fit-content;
   margin: auto;
 }
+
+.table {
+  margin-bottom: 2rem !important;
+}
+
+.detail-box {
+  width: 50%;
+  margin: auto;
+}
 </style>
