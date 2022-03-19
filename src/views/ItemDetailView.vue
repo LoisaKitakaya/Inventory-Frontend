@@ -19,10 +19,6 @@
         <p><strong>Type/Make/Model: </strong> {{ item.type_make_model }}</p>
         <br />
         <p><strong>More Details: </strong> {{ item.more_details }}</p>
-        <br />
-        <p><strong>Archived on: </strong> {{ item.archived_on }}</p>
-        <br />
-        <p><strong>Last Modified: </strong> {{ item.last_modified }}</p>
       </div>
     </div>
   </div>
