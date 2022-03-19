@@ -4,5 +4,5 @@
 // })
 
 module.exports = {
-  publicPath = '/Inventory-Frontend/'
-}
+  publicPath: "/Inventory-Frontend/",
+};
