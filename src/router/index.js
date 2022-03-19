@@ -5,12 +5,18 @@ import Signup from "../views/authentication/Signup.vue";
 import Login from "../views/authentication/Login.vue";
 import InventoryView from "../views/InventoryView.vue";
 import ItemDetailView from "../views/ItemDetailView.vue";
+import AboutView from "../views/AboutView.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: AboutView,
   },
   {
     path: "/signup",

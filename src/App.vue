@@ -1,8 +1,25 @@
 <template>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
+    integrity="sha384-ejwKkLla8gPP8t2u0eQyL0Q/4ItcnyveF505U0NIobD/SMsNyXrLti6CWaD0L52l"
+    crossorigin="anonymous"
+  />
   <div class="main-body">
     <nav>
       <Navbar />
     </nav>
+    <div
+      class="loader-container is-fullwidth"
+      :class="{ 'is-loading': $store.state.isLoading }"
+    >
+      <div class="box loader-box has-background-dark">
+        <div class="loader"></div>
+        <div>
+          <p class="has-text-primary">Loading...</p>
+        </div>
+      </div>
+    </div>
     <router-view />
     <footer>
       <Footer />
@@ -37,9 +54,12 @@ export default {
 <style lang="scss">
 @import "../node_modules/bulma";
 
+// variables
+$loader-color: hsl(171, 100%, 41%);
+
 // mixins
 @mixin background-color {
-  background-color: lightcyan !important;
+  background-color: hsl(206, 70%, 96%) !important;
 }
 
 .main-body {
@@ -62,7 +82,6 @@ export default {
 *::-webkit-scrollbar-thumb {
   background-color: white;
   border: 1px solid darkslategrey;
-  border-radius: 2rem;
 }
 
 * {
@@ -76,7 +95,8 @@ export default {
   margin: auto !important;
 }
 
-.form-button {
+.form-button,
+.table-container {
   width: fit-content;
   margin: auto;
 }
@@ -84,22 +104,50 @@ export default {
 .home-page {
   .section {
     h1 {
-      margin-top: 5rem;
+      margin-top: 2rem;
     }
   }
 }
 
-.table-container {
-  width: fit-content;
-  margin: auto;
-}
-
-.table {
-  margin-bottom: 2rem !important;
-}
-
-.detail-box {
+.detail-box,
+.about-container {
   width: 50%;
   margin: auto;
+}
+
+.about-container {
+  text-align: justify !important;
+}
+
+.loader {
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid $loader-color;
+  border-color: $loader-color transparent $loader-color transparent;
+}
+
+.loader-box {
+  width: fit-content !important;
+  margin: auto !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-container {
+  position: relative;
+  top: 15rem;
+  display: none;
+  justify-content: center;
+  height: 0;
+  z-index: 100;
+
+  &.is-loading {
+    display: flex;
+  }
 }
 </style>

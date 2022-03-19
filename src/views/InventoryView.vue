@@ -6,15 +6,16 @@
         <table class="table is-striped is-hoverable is-fullwidth">
           <thead>
             <tr class="has-text-centered">
+              <th>UID</th>
               <th>Name</th>
               <th>Quantity/Mass/Volume</th>
               <th>Measurement in</th>
               <th>Condition</th>
-              <th>Last Modified</th>
             </tr>
           </thead>
           <tbody>
             <tr class="has-text-centered" v-for="item in items" :key="item.id">
+              <td>{{ item.id }}</td>
               <td>
                 <router-link
                   :to="{ name: 'detail', params: { id: item.id } }"
@@ -25,7 +26,6 @@
               <td>{{ item.quantity_mass_volume }}</td>
               <td>{{ item.measurement_in }}</td>
               <td>{{ item.condition }}</td>
-              <td>{{ item.last_modified }}</td>
             </tr>
           </tbody>
         </table>
@@ -48,8 +48,10 @@ export default {
     this.getItems();
   },
   methods: {
-    getItems() {
-      axios
+    async getItems() {
+      this.$store.commit("setIsLoading", true);
+
+      await axios
         .get("/api-v1/items/")
         .then((response) => {
           console.log(response.data);
@@ -59,6 +61,8 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+
+      this.$store.commit("setIsLoading", false);
     },
   },
 };

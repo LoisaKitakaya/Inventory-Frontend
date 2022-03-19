@@ -39,6 +39,12 @@
           </div>
         </div>
       </form>
+      <br />
+      <p class="has-text-centered">
+        Don't have an account? Click
+        <router-link to="/signup" class="has-text-link">here</router-link> to
+        create one.
+      </p>
     </div>
   </div>
 </template>
@@ -57,7 +63,9 @@ export default {
     };
   },
   methods: {
-    submitForm() {
+    async submitForm() {
+      this.$store.commit("setIsLoading", true);
+
       this.errors = [];
 
       if (this.username === "") {
@@ -77,7 +85,7 @@ export default {
           password: this.password,
         };
 
-        axios
+        await axios
           .post("/api-v1/token/login/", formData)
           .then((response) => {
             console.log(response.data);
@@ -115,6 +123,8 @@ export default {
             }
           });
       }
+
+      this.$store.commit("setIsLoading", false);
     },
   },
 };

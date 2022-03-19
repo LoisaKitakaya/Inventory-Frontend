@@ -42,10 +42,12 @@ export default {
     this.getItems();
   },
   methods: {
-    getItems() {
+    async getItems() {
+      this.$store.commit("setIsLoading", true);
+
       const itemId = this.$route.params.id;
 
-      axios
+      await axios
         .get(`/api-v1/items/${itemId}`)
         .then((response) => {
           console.log(response.data);
@@ -55,6 +57,8 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+
+      this.$store.commit("setIsLoading", false);
     },
   },
 };
